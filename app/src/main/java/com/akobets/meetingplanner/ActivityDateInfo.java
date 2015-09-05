@@ -152,12 +152,12 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
         String meetingPlace;
         int[][][] meetingTime;
 
-//Р Р°РЅРґРѕРјРЅРѕ РѕРїСЂРµРґРµР»СЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ РІСЃС‚СЂРµС‡ РЅР° С‚РµРєСѓС‰РёР№  РґРµРЅСЊ
+//Рандомно определяем количество встреч на текущий  день
         for (meetingQuantity = 0; meetingQuantity < MIN_MEETING_QUANTITY; )
             meetingQuantity = (int) (Math.random() * MAX_MEETING_QUANTITY);
         Log.d("MyLog", "meetingQuantity = " + meetingQuantity);
 
-//        Р Р°РЅРґРѕРјРЅРѕ С„РѕСЂРјРёСЂСѓРµРј РјР°СЃСЃРёРІ С‡Р°СЃС‹ С… РјРёРЅСѓС‚С‹ С… РЅР°С‡Р°Р»Рѕ/РєРѕРЅРµС† РІСЃС‚СЂРµС‡Рё
+//        Рандомно формируем массив часы х минуты х начало/конец встречи
         meetingTime = new int[2][meetingQuantity][2];
         for (int i = 0; i < meetingQuantity; i++) {
             for (; meetingTime[0][i][0] < START_HOURS; ) {
@@ -165,11 +165,11 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
             }
             meetingTime[1][i][0] = ((int) (Math.random() * 4)) * 15;
         }
-//        "РЈРїРѕСЂСЏРґРѕС‡РёРІР°РµРј СЃС„РѕСЂРјРёСЂРѕРІР°РЅРЅС‹Р№ РјР°СЃСЃРёРІ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
+//        "Упорядочиваем сформированный массив по возрастанию
         int temp;
         for (int i = 0; i < meetingQuantity; i++) {
             for (int j = i + 1; j < meetingQuantity; j++) {
-//                Log.d("MyLog", " Р”Рѕ РїСЂРѕРІРµСЂРєРё:  meetingTime [0][" + i + "][0] = " + meetingTime[0][i][0] + " meetingTime [0][" + j + "][0] = " + meetingTime[0][j][0]);
+//                Log.d("MyLog", " До проверки:  meetingTime [0][" + i + "][0] = " + meetingTime[0][i][0] + " meetingTime [0][" + j + "][0] = " + meetingTime[0][j][0]);
                 if (meetingTime[0][i][0] > meetingTime[0][j][0]) {
                     temp = meetingTime[0][j][0];
                     meetingTime[0][j][0] = meetingTime[0][i][0];
@@ -177,7 +177,7 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
                 }
             }
         }
-//        Р—Р°РґР°РµРј РёРЅС‚РµСЂРІР°Р» РјРµР¶РґСѓ РЅР°С‡Р°Р»Р°РјРё РІСЃС‚СЂРµС‡ РЅРµ РјРµРЅРµРµ 2-С… С‡Р°СЃРѕРІ"
+//        Задаем интервал между началами встреч не менее 2-х часов"
         for (int i = 0; i < meetingQuantity; i++) {
             for (int j = i + 1; j < meetingQuantity; j++) {
 
@@ -189,15 +189,15 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
                 }
             }
         }
-//РЈР±РёСЂР°РµРј РІСЃС‚СЂРµС‡Рё СЃ РЅР°С‡Р°Р»РѕРј 23-00 Рё РїРѕР·Р¶Рµ
+//Убираем встречи с началом 23-00 и позже
         for (int i = 0; i < meetingQuantity; i++) {
             if (meetingTime[0][i][0] > END_HOURS) {
                 meetingQuantity = i;
             }
         }
 
-// Р—Р°РґР°РµРј РїСЂРѕРґРѕР»Р¶РёС‚РµР»СЊРЅРѕСЃС‚СЊ РєР°Р¶РґРѕР№ РІСЃС‚СЂРµС‡Рё РІ РїСЂРµРґРµР»Р°С… РІСЂРµРјРµРЅРё РјРµР¶РґСѓ РІСЃСЂРµС‡Р°РјРё,
-// РІСЃС‚СЂРµС‡Рё РЅРµ РјРѕРіСѓС‚ Р·Р°РєР°РЅС‡РёРІР°С‚СЊСЃСЏ Рё РЅР°С‡РёРЅР°С‚СЊСЃСЏ РІ РїСЂРµРґРµР»Р°С… РѕРґРЅРѕРіРѕ С‡Р°СЃР°
+// Задаем продолжительность каждой встречи в пределах времени между всречами,
+// встречи не могут заканчиваться и начинаться в пределах одного часа
         int tempMeetingDuration;
         for (int i = 0; i < meetingQuantity; i++) {
             for (tempMeetingDuration = 0; tempMeetingDuration == 0; ) {
@@ -232,17 +232,17 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
             }
         }
 
-//        РћС‚Р»Р°РґРѕС‡РЅС‹Р№ С†РёРєР». РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РІСЂРµРјРµРЅРЅС‹С… РёРЅС‚РµСЂРІР°Р»РѕРІ
+//        Отладочный цикл. Проверка на корректность временных интервалов
         for (int i = 0; i < meetingQuantity; i++) {
             Log.d("MyLog",
-                    " Р’СЃС‚СЂРµС‡Р° в„–:" + (i + 1) +
-                            "СЃРѕСЃС‚РѕРёС‚СЃСЏ СЃ " + meetingTime[0][i][0] + ":" + meetingTime[1][i][0] +
-                            " РґРѕ " + meetingTime[0][i][1] + ":" + meetingTime[1][i][1]);
+                    " Встреча №:" + (i + 1) +
+                            "состоится с " + meetingTime[0][i][0] + ":" + meetingTime[1][i][0] +
+                            " до " + meetingTime[0][i][1] + ":" + meetingTime[1][i][1]);
         }
 
 
-// РџРµСЂРµРЅРѕСЃРёРј РґР°РЅРЅС‹Рµ РёР· СЃС„РѕСЂРјРёСЂРѕРІР°РЅРЅРѕРіРѕ РјР°СЃСЃРёРІР° РІСЂРµРјРµРЅ РІСЃС‚СЂРµС‡ РІ РїРѕР»СЏ СЃРїРёСЃРєР° pojo
-//  РґРѕР±Р°РІР»СЏРµРј РґР°РЅРЅС‹Рµ - РёРјСЏ РєРѕРЅС‚Р°РєС‚Р° Рё  РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ РІСЃС‚СЂРµС‡Рё
+// Переносим данные из сформированного массива времен встреч в поля списка pojo
+//  добавляем данные - имя контакта и  длительность встречи
 
         ArrayList<String> contactList = new ArrayList<>();
 
@@ -319,9 +319,9 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
         }
         ArrayList<String> receivedMeeting = intent.getStringArrayListExtra(ActivityMeetingAdd.NEW_MEETING_TRANSFER_DATA);
 
-        Toast.makeText(getApplicationContext(), "РџР»Р°РЅРёСЂСѓРµС‚СЃСЏ РІСЃС‚СЂРµС‡Р° СЃ " + "РРјСЏ: " + receivedMeeting.get(0) +
-                ", РЎ " + receivedMeeting.get(1) + " Р”Рѕ " + receivedMeeting.get(2) + ", РќР° С‚РµРјСѓ: " + receivedMeeting.get(3) +
-                ", РњРµСЃС‚Рѕ: " + receivedMeeting.get(4), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Планируется встреча с " + "Имя: " + receivedMeeting.get(0) +
+                ", С " + receivedMeeting.get(1) + " До " + receivedMeeting.get(2) + ", На тему: " + receivedMeeting.get(3) +
+                ", Место: " + receivedMeeting.get(4), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -363,7 +363,7 @@ public class ActivityDateInfo extends Activity implements View.OnClickListener {
             timeToWord.add(i);
         }
         if (hour < 0 || hour > 24 || (minute != 0 && minute != 15 && minute != 30 && minute != 45)) {
-            time = "РћС€РёР±РєР° РІСЂРµРјРµРЅРЅРѕРіРѕ РґРёР°РїР°Р·РѕРЅР°";
+            time = "Ошибка временного диапазона";
             return time;
         }
         if (hour >= 5 && hour <= 20 || hour == 0) {
