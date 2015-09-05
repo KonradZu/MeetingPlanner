@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/llTimeSlot">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/tr0"
+        android:focusable="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="11:00"
+            android:id="@+id/tvLtr0"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:textColor="#ff2020ff"
+            android:textStyle="bold|italic"
+            android:textSize="12dp"
+            android:focusable="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Виктория Кожемякина"
+            android:id="@+id/tvRtr0"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:focusable="false"
+            android:textColor="#ff2020ff" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/tr1"
+        android:focusable="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvLtr1"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="11:15"
+            android:textColor="#ff2020ff"
+            android:textStyle="bold|italic"
+            android:textSize="12dp"
+            android:focusable="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2 часа 30 минут "
+            android:id="@+id/tvRtr1"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:focusable="false"
+            android:textColor="#ff2020ff" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/tr2"
+        android:focusable="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvLtr2"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="11:30"
+            android:textColor="#ff2020ff"
+            android:textStyle="bold|italic"
+            android:textSize="12dp"
+            android:focusable="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2 часа 30 минут "
+            android:id="@+id/tvRtr2"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:focusable="false"
+            android:textColor="#ff2020ff" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/tr3"
+        android:focusable="false">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tvLtr3"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="11:45"
+            android:textColor="#ff2020ff"
+            android:textStyle="bold|italic"
+            android:textSize="12dp"
+            android:autoText="false"
+            android:textIsSelectable="true"
+            android:focusable="false" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="2 часа 30 минут "
+            android:id="@+id/tvRtr3"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="14dp"
+            android:focusable="false"
+            android:textColor="#ff2020ff" />
+    </TableRow>
+</LinearLayout>
