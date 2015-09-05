@@ -16,6 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ActivityDateInfo"
+            android:label="@string/title_activity_date_info">
+        </activity>
+
+        <activity
+            android:name=".ActivityMeetingAdd"
+            android:label="@string/title_activity_meeting_add">
+        </activity>
+
     </application>
 
 </manifest>
